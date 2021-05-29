@@ -1,0 +1,8 @@
+[Inputs]
+=bcd[3:0]=
+[Outputs]
+=grey[3:0]=
+[BiDir]
+[ATTRIBUTES]
+VeriModel bcd_to_grey
+

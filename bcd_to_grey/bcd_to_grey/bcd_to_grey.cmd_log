@@ -1,0 +1,7 @@
+vhdtdtfi -lib work E:/xilinx/bcd_to_grey/bcd_grey.v -lang verilog -prj bcd_to_grey -o bcd_to_grey.spl -module bcd_to_grey -template E:/xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
+spl2sym -intstyle ise -family spartan6 bcd_to_grey.spl E:/xilinx/bcd_to_grey/bcd_to_grey.sym 
+xst -intstyle ise -filter "E:/xilinx/bcd_to_grey/iseconfig/filter.filter" -ifn "E:/xilinx/bcd_to_grey/bcd_to_grey.xst" -ofn "E:/xilinx/bcd_to_grey/bcd_to_grey.syr" 
+ngdbuild -filter "iseconfig/filter.filter" -intstyle ise -dd _ngo -nt timestamp -i -p xc6slx9-tqg144-3 bcd_to_grey.ngc bcd_to_grey.ngd  
+map -filter "E:/xilinx/bcd_to_grey/iseconfig/filter.filter" -intstyle ise -p xc6slx9-tqg144-3 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o bcd_to_grey_map.ncd bcd_to_grey.ngd bcd_to_grey.pcf 
+par -filter "E:/xilinx/bcd_to_grey/iseconfig/filter.filter" -w -intstyle ise -ol high -mt off bcd_to_grey_map.ncd bcd_to_grey.ncd bcd_to_grey.pcf 
+trce -filter E:/xilinx/bcd_to_grey/iseconfig/filter.filter -intstyle ise -v 3 -s 3 -n 3 -fastpaths -xml bcd_to_grey.twx bcd_to_grey.ncd -o bcd_to_grey.twr bcd_to_grey.pcf 
